@@ -68,6 +68,14 @@ valid_layers_ihp_sg13cmos5l = [
     "TopMetal1.nofill", "TEXT.drawing", "Recog.drawing", "Recog.pin", "Recog.esd", "Recog.diode", "Recog.tsv",
     "Recog.pdiode", "Recog.mom", "RES.drawing", "RES.label", "HeatRes.drawing", "EXTBlock.drawing", "prBoundary.drawing",
     "prBoundary.label", "prBoundary.boundary",
+    # The IHP single-port SRAM macros (RM_IHPSG13_1P_*) carry two marker
+    # layers of their own inside the vendor cells: SRAM.drawing (25/0) on the
+    # bitcell kit and DigiBnd.drawing (16/0) on the bitkit and the sense-amp
+    # cells.  They are markers for the vendor's own decks, not conductors, and
+    # sg13cmos5l.lyp does not name them, so they go in as raw layer/datatype
+    # pairs.  Without them a design that instantiates an IHP SRAM cannot pass
+    # the layer check.
+    (25, 0), (16, 0),
 ]
 
 valid_layers_gf180mcuD = [
